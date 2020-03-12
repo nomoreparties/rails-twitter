@@ -1,6 +1,14 @@
 <h2><%= @tweet.user.email %></h2>
 <p><%= @tweet.content %></p>
 
+<% if @tweet.uploads.attached? %>
+  <% @tweet.uploads.each do |upload| %>
+    <%= image_tag upload %>
+  <% end %>
+<% end %>
+
+<br>
+
 <%= link_to 'Delete', tweet_path(@tweet), method: :delete%>
 <br>
 <%= link_to 'Home', root_path %>
