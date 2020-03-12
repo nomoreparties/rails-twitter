@@ -1,0 +1,6 @@
+<h2><%= @tweet.user.email %></h2>
+<p><%= @tweet.content %></p>
+
+<%= link_to 'Delete', tweet_path(@tweet), method: :delete%>
+<br>
+<%= link_to 'Home', root_path %>

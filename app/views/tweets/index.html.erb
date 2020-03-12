@@ -1,0 +1,19 @@
+<% if user_signed_in? %>
+  <p>Hi, <%= current_user.email %></p>
+
+  <h1>Tweets</h1>
+  <% @tweets.each do |tweet| %>
+  <ul>
+    <li>
+      <%=link_to tweet.content, tweet_path(tweet) %> by <%= tweet.user.email %>
+    </li>
+  </ul>
+  <% end %>
+
+  <%= link_to 'Add New Tweet', new_tweet_path %> <br>
+  <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+<% else %>
+  <h1>Welcome to Teeter!</h1><br>
+  <%= link_to 'Register', new_user_registration_path %> <br>
+  <%= link_to 'Login', new_user_session_path %>
+<% end %>
