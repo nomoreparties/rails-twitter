@@ -1,19 +1,26 @@
 <% if user_signed_in? %>
-  <p>Hi, <%= current_user.email %></p>
-
-  <h1>Tweets</h1>
-  <% @tweets.each do |tweet| %>
-  <ul>
-    <li>
-      <%=link_to tweet.content, tweet_path(tweet) %> by <%= tweet.user.email %>
-    </li>
-  </ul>
-  <% end %>
-
-  <%= link_to 'Add New Tweet', new_tweet_path %> <br>
-  <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+  <section class="container text-center">
+    <section class="row">
+      <section class="col bg-info">
+        <p>Hi, <%= current_user.email %></p>
+      </section>
+      <section class="col-7 bg-dark">
+        <% @tweets.each do |tweet| %>
+          <section class="card bg-white rounded-0 p-2">
+            <%=link_to tweet.content, tweet_path(tweet) %> by <%= tweet.user.email %> on <%= tweet.created_at %>
+          </section>
+        <% end %>
+      </section>
+      <section class="col bg-danger">
+        <%= link_to 'Add New Tweet', new_tweet_path %> <br>
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+      </section>
+    </section>
+  </section>
 <% else %>
-  <h1>Welcome to Teeter!</h1><br>
-  <%= link_to 'Register', new_user_registration_path %> <br>
-  <%= link_to 'Login', new_user_session_path %>
+  <section class="container">
+    <h1>Welcome to Teeter!</h1><br>
+    <%= link_to 'Register', new_user_registration_path %> <br>
+    <%= link_to 'Login', new_user_session_path %>
+  </section>
 <% end %>

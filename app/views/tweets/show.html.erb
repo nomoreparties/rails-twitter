@@ -1,14 +1,16 @@
-<h2><%= @tweet.user.email %></h2>
-<p><%= @tweet.content %></p>
+<section class="container">
+  <h2><%= @tweet.user.email %></h2>
+  <p><%= @tweet.content %></p>
 
-<% if @tweet.uploads.attached? %>
-  <% @tweet.uploads.each do |upload| %>
-    <%= image_tag upload %>
+  <% if @tweet.uploads.attached? %>
+    <% @tweet.uploads.each do |upload| %>
+      <%= image_tag upload, height: 300 %>
+    <% end %>
   <% end %>
-<% end %>
 
-<br>
+  <br>
 
-<%= link_to 'Delete', tweet_path(@tweet), method: :delete%>
-<br>
-<%= link_to 'Home', root_path %>
+  <%= link_to 'Delete', tweet_path(@tweet), method: :delete%>
+  <br>
+  <%= link_to 'Home', root_path %>
+</section>
