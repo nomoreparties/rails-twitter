@@ -1,0 +1,10 @@
+<section class="container">
+  <h1>New Tweet:</h1>
+
+  <%= form_for @reply do |form| %>
+    <%= form.label :content %>
+    <%= form.text_field :content %> <br>
+    <%= form.file_field :uploads, multiple: true %> <br>
+    <%= form.submit %> <br>
+  <% end %>
+</section>

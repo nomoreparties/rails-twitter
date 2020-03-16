@@ -3,8 +3,15 @@ Rails.application.routes.draw do
   root 'tweets#index'
   resources :tweets do
     post :like
+    post :retweet
+
+    resources :replies
   end
   resources :users, only: [:show]
+
+  resources :replies do
+    resources :replies
+  end
 
   resources :follows do
     post :follow

@@ -9,9 +9,24 @@
   <% end %>
 
   <br>
-  <%=link_to 'Like', tweet_like_path(@tweet), method: :post %> <%= @tweet.like %>
+  <%= link_to 'Like', tweet_like_path(@tweet), method: :post %> <%= @tweet.like %>
   <br>
-  <%= link_to 'Delete', tweet_path(@tweet), method: :delete%>
+  <%= link_to 'Retweet', tweet_retweet_path(@tweet), method: :post%> <%= @tweet.retweet %>
   <br>
-  <%= link_to 'Home', root_path %>
+  <% unless @tweet.user.id != current_user.id %>
+    <%= link_to 'Delete', tweet_path(@tweet), method: :delete%>
+    <br>
+  <% end%>
+  <%= link_to 'Home', root_path %> <br> <br>
+
+  <section class="container">
+    <h1>New Tweet:</h1>
+
+    <%= form_for [@tweet, Reply.new] do |form| %>
+      <%= form.label :content %>
+      <%= form.text_field :content %> <br>
+      <%= form.file_field :uploads, multiple: true %> <br>
+      <%= form.submit %> <br>
+    <% end %>
+  </section>
 </section>

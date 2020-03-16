@@ -40,7 +40,7 @@ class TweetsController < ApplicationController
     @tweet = Tweet.find(params[:tweet_id])
     @tweet.increment! :retweet
 
-    current_user.tweets.create(content: @tweet.content.dup)
+    current_user.tweets.create(content: @tweet.content.dup, like: 0, retweet: 0)
     redirect_back(fallback_location: root_path)
   end
 
