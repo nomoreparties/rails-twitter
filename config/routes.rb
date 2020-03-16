@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'tweets#index'
-  resources :tweets
+  resources :tweets do
+    post :like
+  end
+  resources :users, only: [:show]
+
+  resources :follows do
+    post :follow
+    post :unfollow
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

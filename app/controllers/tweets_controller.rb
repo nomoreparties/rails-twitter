@@ -30,6 +30,20 @@ class TweetsController < ApplicationController
     end
   end
 
+  def like
+    @tweet = Tweet.find(params[:tweet_id])
+    @tweet.increment! :like
+    redirect_back(fallback_location: root_path)
+  end
+
+  def retweet
+    @tweet = Tweet.find(params[:tweet_id])
+    @tweet.increment! :retweet
+
+    current_user.tweets.create(content: @tweet.content.dup)
+    redirect_back(fallback_location: root_path)
+  end
+
 
   private
     def tweet_params

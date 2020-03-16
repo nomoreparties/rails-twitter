@@ -1,0 +1,25 @@
+<section class="container">
+  <h1><%= @user.email %></h1>
+
+  <% unless @user.id == current_user.id%>
+    <% if @user.is_followed_by?(current_user.id) %>
+      <%= link_to 'Unfollow', follow_unfollow_path(@user), method: :post %>
+    <% else %>
+      <%= link_to 'Follow', follow_follow_path(@user), method: :post %>
+    <% end %>
+  <% end %>
+
+  <br>
+  <br>
+
+  <section class="col bg-info">
+    <% @tweets.each do |tweet| %>
+      <% unless tweet.user.id != @user.id %>
+        <section class="card bg-white rounded-0 p-2 ">
+          <%=link_to tweet.content, tweet_path(tweet) %> by <%= tweet.user.email %> on <%= tweet.created_at %>
+        </section>
+      <% end %>
+    <% end %>
+  </section>
+
+</section>

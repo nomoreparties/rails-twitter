@@ -7,7 +7,7 @@
       <section class="col-7 bg-dark">
         <% @tweets.each do |tweet| %>
           <section class="card bg-white rounded-0 p-2">
-            <%=link_to tweet.content, tweet_path(tweet) %> by <%= tweet.user.email %> on <%= tweet.created_at %>
+            <%=link_to tweet.content, tweet_path(tweet) %> by <%=link_to tweet.user.email, user_path(tweet.user.id) %> on <%= tweet.created_at %>
           </section>
         <% end %>
       </section>

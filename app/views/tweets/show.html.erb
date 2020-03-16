@@ -9,7 +9,8 @@
   <% end %>
 
   <br>
-
+  <%=link_to 'Like', tweet_like_path(@tweet), method: :post %> <%= @tweet.like %>
+  <br>
   <%= link_to 'Delete', tweet_path(@tweet), method: :delete%>
   <br>
   <%= link_to 'Home', root_path %>
