@@ -119,4 +119,6 @@ Rails.application.configure do
     :authentication => :plain,
   }
   ActionMailer::Base.delivery_method = :smtp
+
+  Rails.application.routes.default_url_options[:host] = 'fake-twitter-2020.herokuapp.com'
 end
