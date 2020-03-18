@@ -10,7 +10,13 @@ class RepliesController < ApplicationController
     if params[:tweet_id]
       @repliable = Tweet.find_by(id: params[:tweet_id])
     end
-    @reply = @repliable.replies.create(reply_params)
+    @reply = @repliable.replies.create(reply_params.merge(user_id: current_user.id))
+
+    if @reply.save
+      redirect_to root_path
+    else
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   private

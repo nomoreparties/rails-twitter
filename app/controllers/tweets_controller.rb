@@ -1,7 +1,7 @@
 class TweetsController < ApplicationController
 
   def index
-    @tweets = Tweet.all
+    @tweets = Tweet.search(params[:search])
   end
 
   def new
@@ -47,7 +47,7 @@ class TweetsController < ApplicationController
 
   private
     def tweet_params
-      params.require(:tweet).permit(:content, :upload, uploads: [])
+      params.require(:tweet).permit(:content, :search, :upload, uploads: [])
     end
 
 end
