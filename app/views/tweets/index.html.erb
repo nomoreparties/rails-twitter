@@ -26,5 +26,12 @@
     <h1>Welcome to Teeter!</h1><br>
     <%= link_to 'Register', new_user_registration_path %> <br>
     <%= link_to 'Login', new_user_session_path %>
+    <br>
+    <h2>Users:</h2><br>
+    <% @users.each do |user| %>
+    <ul>
+      <li><%= user.email %></li>
+    </ul>
+    <% end %>
   </section>
 <% end %>

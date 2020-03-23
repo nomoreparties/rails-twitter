@@ -2,6 +2,7 @@ class TweetsController < ApplicationController
 
   def index
     @tweets = Tweet.search(params[:search])
+    @users = User.all
   end
 
   def new
